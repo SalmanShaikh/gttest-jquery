@@ -1,0 +1,77 @@
+/*
+  Pure CSS3 resuable icons
+  Author: Ôö¼┬« Salman Shaikh
+*/
+//local variables
+$arrow-size: 16px;
+$icon-color: $base-color;
+$icon-size: 32px;
+$icon-margin: 16px;
+
+//arrows
+[class*="icon"] {
+    position: relative;
+
+    &:before {
+        position: absolute;
+        content: '';
+    }
+}
+
+.icon-doc {
+    padding-left: ($icon-size + $icon-margin) !important;
+
+    &:before {
+        width: $icon-size / 2;
+        height: 22px;
+        left: 20px;
+        background-color: $base-color;
+    }
+
+    &:after {
+        display: block;
+        content: "";
+        position: relative;
+        top: -26px;
+        right: 21px;
+        width: 0;
+        height: 0;
+        border-bottom-left-radius: 2px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: $bg-color $bg-color rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.35);
+    }
+}
+
+.icon-arrow-up {
+    &:before {
+        @include arrow-icon($arrow-size, $base-color, top);
+    }
+}
+
+.icon-arrow-down {
+    &:before {
+        @include arrow-icon($arrow-size, $base-color, bottom);
+    }
+}
+
+$icon-x: -15px;
+$icon-y: 4px;
+
+.icon-arrow-left {
+    padding-left: $arrow-size * 2;
+    &:before {
+      left:$icon-x;
+      top:$icon-y;
+      @include arrow-icon($arrow-size, $base-color, left);
+    }
+}
+
+.icon-arrow-right { 
+    padding-right: $arrow-size * 2;
+    &:before {
+      right:$icon-x;
+      top:$icon-y;
+      @include arrow-icon($arrow-size, $base-color, right);
+    }
+}

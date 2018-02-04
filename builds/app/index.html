@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Responsive Component using JQuery+sass </title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <section class="flex-grid product-block" id="ProductComponent" data-json="/js/content.json">
+
+  	<input type="checkbox" id="ToggleID" tabindex="0" class="switch" value="on">
+  		<header class="grid-row product-block-header has-toggle-switch">
+  			<h1 class="grid-col m-col-12 icon-doc">Buying an iPad Mini?</h1>
+  			<label for="ToggleID" class="grid-row toggle-arrow"><span class="hidden">Toggle button to show hide conent through pure CSS3 advanced psuedo selectors, Accessibility through space bar</span></label>
+  		</header>
+  		<div class="css-slider toggle-this">
+
+  			<ul class="slide-container hidden product-container">
+  				<li class="product-block-content feature-template">
+  					<div class="grid-row">
+  						<figure class="grid-col m-col-12 t-col-4 product-block-img product-image">
+  							<img src="//placehold.it/100" alt="Photo of Product">
+  						</figure>
+  					<div class="grid-col m-col-12 t-col-8 product-block-desc">
+  						<h2 class="feature-title">@@FeatureTitle</h2>
+  						<p class="feature-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum id quia delectus reprehenderit, consectetur quibusdam vitae dolorem autem inventore explicabo, dolor, nemo cum. Porro accusantium eligendi minus facilis provident distinctio dolor ut, rerum pariatur! Odit cumque dicta neque voluptatem eum, error sapiente est libero cupiditate dolor, magnam similique aut facilis!</p>
+  					</div>
+  					</div>
+  					<footer class="slide-nav">
+  						<label tabindex="1" for="slide_2" class="prev icon-arrow-left">
+  							<span>@@NextFeatureTitle</span>
+  						</label>
+  						<label tabindex="1" for="slide_2" class="next icon-arrow-right">
+  							<span>@@NextFeatureTitle</span>
+  						</label>
+  					</footer>
+  				</li>
+  			</ul>
+  		</div>
+  </section>
+  <script src="js/script.js"></script>
+</body>
+</html>

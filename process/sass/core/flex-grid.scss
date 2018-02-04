@@ -1,0 +1,168 @@
+/*
+    Responsive Grid CSS Classes to use on any html markup to build responsive layout.
+    These classes helps backend developer to build layout without a dependency on Frontend developers.
+    similar like bootstrap, with 10 time less footprint and without culutring unnecessary html tag.
+
+    Author: © Salman Shaikh
+    Author's Website: www.salmanshaikh.net
+    License : Soon I will publish as npm package on git with MIT License, For time being please doen't use without my permission;
+
+    BASE CLASSES
+    .flex-grid //to main component, cover entire body edge to edge
+    .grid-row //container based on max grid columns i.e. 12 (60em) with clear fix means each row will occupy new line in the layout;
+    .grid-col //flex box column to maintain height equally within a row regardless of varrying content in each column
+
+    //BREAKPOINTS
+    CLASS Naming convention:
+    <device>-col-<number of cols>
+    e.g.
+    m-col-12 //this will consume the entire width only on mobile breakpoint
+    e.g.
+    t-col-12 //this will consume the entire row width only on tablet and above resoultions
+    e.g.
+    d-col-4 //this will consuem the 4 out of 12 col on desktop or higher resolution.
+
+    USAGE Example: //You can use any html block elements to form layout.
+    .flex-grid  //add .grid-outline to debug or review layout outline
+       .grid-row
+           .grid-col .m-col-12 .t-col-8 .d-col-4
+           .grid-col .m-col-12 .t-col-8 .d-col-4
+           .grid-col .m-col-12 .t-col-8 .d-col-4
+           .grid-col .m-col-12 .t-col-8 .d-col-4
+
+*/
+
+//Grid settings
+$grid-columns : 12;
+$grid-gap: 20px;
+
+
+
+
+@function col-span($col) {
+    @return (100% / $grid-columns * $col);
+}
+
+.flex-grid {
+    @include blade;
+
+    .grid-row {
+        @include container(90%);
+        @include breakpoint($tablet) {
+          @include container(95%);
+        }
+        @include breakpoint($desktop) {
+            @include container(12);
+        }
+
+
+        @include display-flex;
+        @include flex-flow(row, wrap);
+    }
+
+    .grid-col {
+        position: relative;
+        padding: $grid-gap;
+        @include border-box-sizing;
+
+        @include flex(1, 1, 0);
+
+        //mobile first
+        @for $i from 1 through $grid-columns {
+            &.m-col-#{$i} {
+                @include flex(0, 0, col-span($i));
+            }
+        }
+
+        @include breakpoint($tablet) {
+            @for $i from 1 through $grid-columns {
+                &.t-col-#{$i} {
+                    @include flex(0, 0, col-span($i));
+                }
+            }
+        }
+
+
+        @include breakpoint($desktop) {
+            @for $i from 1 through $grid-columns {
+                &.d-col-#{$i} {
+                    @include flex(0, 0, col-span($i));
+                }
+            }
+        }
+
+
+        @include breakpoint($tablet) {
+            &.pad-right {
+                padding-right: $grid-gap !important;
+            }
+
+            &.pad-left {
+                padding-left: $grid-gap !important;
+            }
+        }
+        &.pad-top {
+                padding-top: $grid-gap !important;
+            }
+
+            &.pad-bottom {
+                padding-bottom: $grid-gap !important;
+            }
+
+            &.pad-all {
+                padding: $grid-gap !important;
+            }
+    } //grid-col
+
+    &.grid-gap0 {
+        .grid-col {
+            padding: 0px;
+        }
+    }
+
+    &.grid-gap10 {
+        .grid-col {
+            padding: 10px;
+        }
+    }
+
+    &.grid-gap30 {
+        .grid-col {
+            padding: 30px;
+        }
+    }
+
+    &.grid-gap40 {
+        .grid-col {
+            padding: 40px;
+        }
+    }
+
+    //for debug purpose only
+    &.grid-outline {
+        [class*=col] {
+            background-color: #eee;
+            border: 1px solid #ddd;
+        }
+    }
+}
+
+.border-bottom {
+    border-bottom: 1px solid #eee;
+}
+
+.adjust-border-mr {
+    margin-right: -20px;
+}
+
+.adjust-border-ml {
+    margin-left: -20px;
+}
+
+.pull-right {
+    float: right;
+}
+
+.pull-left {
+    float: left;
+}

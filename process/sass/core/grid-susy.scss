@@ -1,0 +1,18 @@
+$grid-columns : 12;
+//Sussy Grid 60em = 960px;
+$susy: (
+  columns: $grid-columns,
+  container: 60em,
+  gutters: 1 / 4,
+  gutter-position: split,
+  // debug: (
+  //   image: show,
+  //   color: rgba(#66f, .25),
+  //   output: overlay,
+  //   toggle: top right
+  // )
+);
+
+
+
+@include border-box-sizing();

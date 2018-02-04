@@ -1,0 +1,594 @@
+@charset "UTF-8";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800);
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+/*
+ Reusable Sass funcitons
+*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after {
+  content: '';
+  content: none; }
+
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/**  Basic Page CSS **/
+body {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  font-size: 16px;
+  position: relative;
+  line-height: 1.6em;
+  background-color: #eee; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  margin: 0;
+  padding-bottom: 10px; }
+
+img {
+  width: auto;
+  max-width: 100%;
+  height: auto !important; }
+
+.hidden {
+  display: none !important; }
+
+/*
+Resuable Mixins
+Author : Salman Shaikh
+www.salmanshaikh.net
+*/
+/*
+Resuable Mixins
+Author : Salman Shaikh
+www.salmanshaikh.net
+*/
+/*
+    Responsive Grid CSS Classes to use on any html markup to build responsive layout.
+    These classes helps backend developer to build layout without a dependency on Frontend developers.
+    similar like bootstrap, with 10 time less footprint and without culutring unnecessary html tag.
+
+    Author: © Salman Shaikh
+    Author's Website: www.salmanshaikh.net
+    License : Soon I will publish as npm package on git with MIT License, For time being please doen't use without my permission;
+
+    BASE CLASSES
+    .flex-grid //to main component, cover entire body edge to edge
+    .grid-row //container based on max grid columns i.e. 12 (60em) with clear fix means each row will occupy new line in the layout;
+    .grid-col //flex box column to maintain height equally within a row regardless of varrying content in each column
+
+    //BREAKPOINTS
+    CLASS Naming convention:
+    <device>-col-<number of cols>
+    e.g.
+    m-col-12 //this will consume the entire width only on mobile breakpoint
+    e.g.
+    t-col-12 //this will consume the entire row width only on tablet and above resoultions
+    e.g.
+    d-col-4 //this will consuem the 4 out of 12 col on desktop or higher resolution.
+
+    USAGE Example: //You can use any html block elements to form layout.
+    .flex-grid  //add .grid-outline to debug or review layout outline
+       .grid-row
+           .grid-col .m-col-12 .t-col-8 .d-col-4
+           .grid-col .m-col-12 .t-col-8 .d-col-4
+           .grid-col .m-col-12 .t-col-8 .d-col-4
+           .grid-col .m-col-12 .t-col-8 .d-col-4
+
+*/
+.flex-grid {
+  padding: 20px 0; }
+  .flex-grid:before, .flex-grid:after {
+    content: '';
+    display: table; }
+  .flex-grid:after {
+    clear: both; }
+  @media (min-width: 768px) {
+    .flex-grid {
+      padding: 40px 0; } }
+  .flex-grid .grid-row {
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap; }
+    .flex-grid .grid-row:after {
+      content: " ";
+      display: block;
+      clear: both; }
+    @media (min-width: 768px) {
+      .flex-grid .grid-row {
+        max-width: 95%;
+        margin-left: auto;
+        margin-right: auto; }
+        .flex-grid .grid-row:after {
+          content: " ";
+          display: block;
+          clear: both; } }
+    @media (min-width: 960px) {
+      .flex-grid .grid-row {
+        max-width: 60em;
+        margin-left: auto;
+        margin-right: auto; }
+        .flex-grid .grid-row:after {
+          content: " ";
+          display: block;
+          clear: both; } }
+  .flex-grid .grid-col {
+    position: relative;
+    padding: 20px;
+    -webkit-flex: 1 1 0;
+    flex: 1 1 0; }
+    .flex-grid .grid-col *, .flex-grid .grid-col *:before, .flex-grid .grid-col *:after {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box; }
+    .flex-grid .grid-col.m-col-1 {
+      -webkit-flex: 0 0 8.33333%;
+      flex: 0 0 8.33333%; }
+    .flex-grid .grid-col.m-col-2 {
+      -webkit-flex: 0 0 16.66667%;
+      flex: 0 0 16.66667%; }
+    .flex-grid .grid-col.m-col-3 {
+      -webkit-flex: 0 0 25%;
+      flex: 0 0 25%; }
+    .flex-grid .grid-col.m-col-4 {
+      -webkit-flex: 0 0 33.33333%;
+      flex: 0 0 33.33333%; }
+    .flex-grid .grid-col.m-col-5 {
+      -webkit-flex: 0 0 41.66667%;
+      flex: 0 0 41.66667%; }
+    .flex-grid .grid-col.m-col-6 {
+      -webkit-flex: 0 0 50%;
+      flex: 0 0 50%; }
+    .flex-grid .grid-col.m-col-7 {
+      -webkit-flex: 0 0 58.33333%;
+      flex: 0 0 58.33333%; }
+    .flex-grid .grid-col.m-col-8 {
+      -webkit-flex: 0 0 66.66667%;
+      flex: 0 0 66.66667%; }
+    .flex-grid .grid-col.m-col-9 {
+      -webkit-flex: 0 0 75%;
+      flex: 0 0 75%; }
+    .flex-grid .grid-col.m-col-10 {
+      -webkit-flex: 0 0 83.33333%;
+      flex: 0 0 83.33333%; }
+    .flex-grid .grid-col.m-col-11 {
+      -webkit-flex: 0 0 91.66667%;
+      flex: 0 0 91.66667%; }
+    .flex-grid .grid-col.m-col-12 {
+      -webkit-flex: 0 0 100%;
+      flex: 0 0 100%; }
+    @media (min-width: 768px) {
+      .flex-grid .grid-col.t-col-1 {
+        -webkit-flex: 0 0 8.33333%;
+        flex: 0 0 8.33333%; }
+      .flex-grid .grid-col.t-col-2 {
+        -webkit-flex: 0 0 16.66667%;
+        flex: 0 0 16.66667%; }
+      .flex-grid .grid-col.t-col-3 {
+        -webkit-flex: 0 0 25%;
+        flex: 0 0 25%; }
+      .flex-grid .grid-col.t-col-4 {
+        -webkit-flex: 0 0 33.33333%;
+        flex: 0 0 33.33333%; }
+      .flex-grid .grid-col.t-col-5 {
+        -webkit-flex: 0 0 41.66667%;
+        flex: 0 0 41.66667%; }
+      .flex-grid .grid-col.t-col-6 {
+        -webkit-flex: 0 0 50%;
+        flex: 0 0 50%; }
+      .flex-grid .grid-col.t-col-7 {
+        -webkit-flex: 0 0 58.33333%;
+        flex: 0 0 58.33333%; }
+      .flex-grid .grid-col.t-col-8 {
+        -webkit-flex: 0 0 66.66667%;
+        flex: 0 0 66.66667%; }
+      .flex-grid .grid-col.t-col-9 {
+        -webkit-flex: 0 0 75%;
+        flex: 0 0 75%; }
+      .flex-grid .grid-col.t-col-10 {
+        -webkit-flex: 0 0 83.33333%;
+        flex: 0 0 83.33333%; }
+      .flex-grid .grid-col.t-col-11 {
+        -webkit-flex: 0 0 91.66667%;
+        flex: 0 0 91.66667%; }
+      .flex-grid .grid-col.t-col-12 {
+        -webkit-flex: 0 0 100%;
+        flex: 0 0 100%; } }
+    @media (min-width: 960px) {
+      .flex-grid .grid-col.d-col-1 {
+        -webkit-flex: 0 0 8.33333%;
+        flex: 0 0 8.33333%; }
+      .flex-grid .grid-col.d-col-2 {
+        -webkit-flex: 0 0 16.66667%;
+        flex: 0 0 16.66667%; }
+      .flex-grid .grid-col.d-col-3 {
+        -webkit-flex: 0 0 25%;
+        flex: 0 0 25%; }
+      .flex-grid .grid-col.d-col-4 {
+        -webkit-flex: 0 0 33.33333%;
+        flex: 0 0 33.33333%; }
+      .flex-grid .grid-col.d-col-5 {
+        -webkit-flex: 0 0 41.66667%;
+        flex: 0 0 41.66667%; }
+      .flex-grid .grid-col.d-col-6 {
+        -webkit-flex: 0 0 50%;
+        flex: 0 0 50%; }
+      .flex-grid .grid-col.d-col-7 {
+        -webkit-flex: 0 0 58.33333%;
+        flex: 0 0 58.33333%; }
+      .flex-grid .grid-col.d-col-8 {
+        -webkit-flex: 0 0 66.66667%;
+        flex: 0 0 66.66667%; }
+      .flex-grid .grid-col.d-col-9 {
+        -webkit-flex: 0 0 75%;
+        flex: 0 0 75%; }
+      .flex-grid .grid-col.d-col-10 {
+        -webkit-flex: 0 0 83.33333%;
+        flex: 0 0 83.33333%; }
+      .flex-grid .grid-col.d-col-11 {
+        -webkit-flex: 0 0 91.66667%;
+        flex: 0 0 91.66667%; }
+      .flex-grid .grid-col.d-col-12 {
+        -webkit-flex: 0 0 100%;
+        flex: 0 0 100%; } }
+    @media (min-width: 768px) {
+      .flex-grid .grid-col.pad-right {
+        padding-right: 20px !important; }
+      .flex-grid .grid-col.pad-left {
+        padding-left: 20px !important; } }
+    .flex-grid .grid-col.pad-top {
+      padding-top: 20px !important; }
+    .flex-grid .grid-col.pad-bottom {
+      padding-bottom: 20px !important; }
+    .flex-grid .grid-col.pad-all {
+      padding: 20px !important; }
+  .flex-grid.grid-gap0 .grid-col {
+    padding: 0px; }
+  .flex-grid.grid-gap10 .grid-col {
+    padding: 10px; }
+  .flex-grid.grid-gap30 .grid-col {
+    padding: 30px; }
+  .flex-grid.grid-gap40 .grid-col {
+    padding: 40px; }
+  .flex-grid.grid-outline [class*=col] {
+    background-color: #eee;
+    border: 1px solid #ddd; }
+
+.border-bottom {
+  border-bottom: 1px solid #eee; }
+
+.adjust-border-mr {
+  margin-right: -20px; }
+
+.adjust-border-ml {
+  margin-left: -20px; }
+
+.pull-right {
+  float: right; }
+
+.pull-left {
+  float: left; }
+
+/*
+	Resuable toggle switch for simple open and close interaction of accordion;
+	Author : © Salman Shaikh
+*/
+.toggle-arrow {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  right: 16px;
+  top: 13px;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px; }
+  .toggle-arrow:hover, .toggle-arrow:focus {
+    background-color: #ebebdb; }
+  .toggle-arrow:before {
+    position: absolute;
+    content: '';
+    top: 20px;
+    right: 16px;
+    width: 0;
+    height: 0;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #488400;
+    -webkit-transition: border ease;
+    -webkit-transition-delay: 0.5s;
+    -moz-transition: border ease 0.5s;
+    -o-transition: border ease 0.5s;
+    transition: border ease 0.5s; }
+
+input[id^="Toggle"] {
+  opacity: 0;
+  width: 1px;
+  height: 1px; }
+
+input[id^="Toggle"]:focus ~ .has-toggle-switch .toggle-arrow {
+  background-color: #ebebdb; }
+  input[id^="Toggle"]:focus ~ .has-toggle-switch .toggle-arrow:after {
+    position: absolute;
+    content: 'Hit space bar to toggle accordion';
+    font-size: 12px;
+    width: 500px;
+    left: -204px;
+    top: 12px; }
+
+input[id^="Toggle"]:checked ~ .has-toggle-switch .toggle-arrow:before {
+  border-bottom: none;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #488400; }
+
+.toggle-this {
+  overflow-y: hidden;
+  max-height: 1000px;
+  -webkit-transition: max-height ease-in-out 0.3s;
+  -webkit-transition-delay: 0.05s;
+  -moz-transition: max-height ease-in-out 0.3s 0.05s;
+  -o-transition: max-height ease-in-out 0.3s 0.05s;
+  transition: max-height ease-in-out 0.3s 0.05s; }
+  .toggle-this * {
+    -webkit-transition: opacity ease-in;
+    -webkit-transition-delay: 0.8s;
+    -moz-transition: opacity ease-in 0.8s;
+    -o-transition: opacity ease-in 0.8s;
+    transition: opacity ease-in 0.8s;
+    opacity: 1; }
+
+input[id^="Toggle"]:checked ~ .toggle-this {
+  max-height: 0; }
+  input[id^="Toggle"]:checked ~ .toggle-this * {
+    opacity: 0; }
+
+/*
+  Pure CSS3 resuable icons
+  Author: Ôö¼┬« Salman Shaikh
+*/
+[class*="icon"] {
+  position: relative; }
+  [class*="icon"]:before {
+    position: absolute;
+    content: ''; }
+
+.icon-doc {
+  padding-left: 48px !important; }
+  .icon-doc:before {
+    width: 16px;
+    height: 22px;
+    left: 20px;
+    background-color: #488400; }
+  .icon-doc:after {
+    display: block;
+    content: "";
+    position: relative;
+    top: -26px;
+    right: 21px;
+    width: 0;
+    height: 0;
+    border-bottom-left-radius: 2px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #d9d8ba #d9d8ba rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.35); }
+
+.icon-arrow-up:before {
+  width: 0;
+  height: 0;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-top: 16px solid #488400; }
+
+.icon-arrow-down:before {
+  width: 0;
+  height: 0;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-bottom: 16px solid #488400; }
+
+.icon-arrow-left {
+  padding-left: 32px; }
+  .icon-arrow-left:before {
+    left: -15px;
+    top: 4px;
+    width: 0;
+    height: 0;
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    border-right: 16px solid #488400; }
+
+.icon-arrow-right {
+  padding-right: 32px; }
+  .icon-arrow-right:before {
+    right: -15px;
+    top: 4px;
+    width: 0;
+    height: 0;
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    border-left: 16px solid #488400; }
+
+.product-block {
+  position: relative; }
+
+.product-block-header {
+  background-color: #d9d8ba;
+  -moz-border-radius-topleft: 12px;
+  -webkit-border-top-left-radius: 12px;
+  border-top-left-radius: 12px;
+  -moz-border-radius-topright: 12px;
+  -webkit-border-top-right-radius: 12px;
+  border-top-right-radius: 12px;
+  position: relative; }
+  .product-block-header h1, .product-block-header h2, .product-block-header h3, .product-block-header h4, .product-block-header h5, .product-block-header h6 {
+    top: 7px; }
+
+.product-block-content {
+  background-color: #fff; }
+
+.product-block-footer {
+  display: block;
+  background-color: #fff;
+  border-top: 1px solid #eee; }
+  .product-block-footer a {
+    color: #488400; }
+    .product-block-footer a:hover {
+      color: #2c5100;
+      text-decoration: none; }
+  .product-block-footer .prev {
+    float: right; }
+  .product-block-footer .next {
+    float: left; }
+
+/*
+    PURE CSS SLIDER using CSS3 advance pusedo selectors
+    Author : Salman Shaikh
+    //ul li elements are must for smooth functioning.
+*/
+ul.slide-container {
+  position: relative;
+  width: 90%;
+  height: auto;
+  z-index: 1;
+  font-size: 0;
+  line-height: 0;
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+  white-space: nowrap; }
+  ul.slide-container *, ul.slide-container *:before, ul.slide-container *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+  @media (min-width: 768px) {
+    ul.slide-container {
+      width: 95%;
+      height: 400px; } }
+  @media (min-width: 960px) {
+    ul.slide-container {
+      width: 960px; } }
+  ul.slide-container li {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #fff;
+    width: 100%;
+    height: 90%;
+    top: 0;
+    overflow: hidden;
+    font-size: 15px;
+    font-size: initial;
+    line-height: normal;
+    -webkit-transition: margin-left, 0.5s cubic-bezier(0.4, 1.3, 0.65, 1);
+    -moz-transition: margin-left, 0.5s cubic-bezier(0.4, 1.3, 0.65, 1);
+    -o-transition: margin-left, 0.5s cubic-bezier(0.4, 1.3, 0.65, 1);
+    transition: margin-left, 0.5s cubic-bezier(0.4, 1.3, 0.65, 1);
+    vertical-align: top;
+    white-space: normal;
+    margin-bottom: 100px; }
+    ul.slide-container li *, ul.slide-container li *:before, ul.slide-container li *:after {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box; }
+    @media (min-width: 768px) {
+      ul.slide-container li {
+        width: 100%;
+        height: 100%;
+        margin-bottom: 15px; } }
+  ul.slide-container figure {
+    margin: 0;
+    width: 30%;
+    float: left; }
+    ul.slide-container figure img {
+      width: auto;
+      max-width: 100%;
+      height: auto; }
+  ul.slide-container .content {
+    width: 70%;
+    float: left; }
+  ul.slide-container footer {
+    background-color: #d9d8ba;
+    padding: 10px;
+    margin-top: 70px; }
+
+input[type=radio] {
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  position: fixed;
+  top: 0px;
+  left: -0px; }
+
+.slide-nav {
+  position: fixed;
+  bottom: 0;
+  width: 90%;
+  background-color: #eee;
+  padding: 10px; }
+  @media (min-width: 768px) {
+    .slide-nav {
+      position: absolute;
+      width: 100%; } }
+  .slide-nav label {
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px;
+    outline: none; }
+  .slide-nav .next:hover, .slide-nav .next:focus, .slide-nav .prev:hover, .slide-nav .prev:focus {
+    color: #488400; }
+  .slide-nav .next span, .slide-nav .prev span {
+    font-size: 11px; }
+    @media (min-width: 768px) {
+      .slide-nav .next span, .slide-nav .prev span {
+        font-size: 14px; } }
+  .slide-nav .prev {
+    float: left;
+    margin-left: 20px; }
+  .slide-nav .next {
+    float: right;
+    margin-right: 20px; }

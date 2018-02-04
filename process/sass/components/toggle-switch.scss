@@ -1,0 +1,71 @@
+/*
+	Resuable toggle switch for simple open and close interaction of accordion;
+	Author : © Salman Shaikh
+*/
+$arrow-size:8px;
+$button-size:48px; //mobile optimize for finger tap;
+
+.toggle-arrow {
+	position:absolute;
+	width:$button-size;
+	height: $button-size;
+	right:$base-radius * 2;
+	top:13px;
+	cursor:pointer;
+	background-color: transparent;
+	&:hover,&:focus {
+		background-color: lighten($bg-color, 10%);
+	}
+	@include border-radius($base-radius);
+	&:before {
+		position:absolute;
+		content:'';
+		top:($button-size - $base-radius) / 2;
+		right:$button-size / 3;
+		//up arrow
+		width: 0; 
+  		height: 0; 
+  		@include arrow-icon($arrow-size, $base-color, bottom);
+  		@include transition(border ease .5s);
+	}
+}
+input[id^="Toggle"] {
+	opacity: 0;
+	width:1px;
+	height: 1px;
+}
+input[id^="Toggle"]:focus ~ .has-toggle-switch .toggle-arrow {
+	background-color: lighten($bg-color, 10%);
+	&:after {
+		position: absolute;
+		content: 'Hit space bar to toggle accordion';
+		font-size: 12px;
+    	width: 500px;
+    	left: -204px;
+    	top: 12px;
+	}
+}
+
+input[id^="Toggle"]:checked ~ .has-toggle-switch .toggle-arrow {
+	&:before {
+  		border-bottom: none;
+  		@include arrow-icon($arrow-size, $base-color, top);
+	}
+}
+
+.toggle-this {
+	overflow-y:hidden;
+	max-height: 1000px;
+	@include transition(max-height ease-in-out .3s .05s);
+	* {
+		@include transition(opacity ease-in .8s);
+		opacity:1;
+	}
+}
+
+input[id^="Toggle"]:checked ~ .toggle-this {
+	max-height: 0;
+	* {
+		opacity:0;
+	}
+}

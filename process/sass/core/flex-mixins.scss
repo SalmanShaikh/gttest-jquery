@@ -1,0 +1,113 @@
+/*
+Resuable Mixins
+Author : Salman Shaikh
+www.salmanshaikh.net
+*/
+@mixin clearfix {
+    &:before, &:after {
+        content: '';
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+@mixin blade {
+    @include clearfix;
+
+    padding: 20px 0;
+
+    @include breakpoint($tablet) {
+        padding: 40px 0;
+    }
+}
+
+@mixin display-flex {
+    display: flex;
+    display: -webkit-flex;
+    display: flex;
+}
+
+@mixin flex-flow($fDir: row, $fwrap: wrap) {
+   -webkit-flex-flow: $fDir $fwrap;
+   flex-flow: $fDir $fwrap;
+}
+@mixin flex($grow: 0, $shrink: 0, $basis: auto) {
+  -webkit-flex: $grow $shrink $basis;
+   flex: $grow $shrink $basis;
+}
+@mixin justify-content($value: space-between) {
+  -webkit-justify-content:$value;
+        -ms-flex-pack:$value;
+        justify-content:$value;
+}
+
+@mixin align-items($value, $tweenerValue) {
+    -webkit-align-items: $value;
+    -ms-flex-align: $tweenerValue;
+    align-items: $value;
+}
+
+@mixin flex-order($value) {
+  -webkit-order:$value;
+  -ms-order:$value;
+  order:$value;
+}
+
+@mixin flex-direction($value) {
+  -webkit-flex-direction:$value;
+  -moz-flex-direction:$value;
+  -ms-flex-direction:$value;
+  flex-direction:$value;
+}
+
+@mixin align-self($value:flex-start,$tweenerValue:start) {
+    -webkit-align-self: $value;
+    -ms-flex-item-align: $tweenerValue;
+    align-self: $value;
+}
+
+@mixin top-radius($radius: 4px) {
+    -moz-border-radius-topleft: $radius;
+    -webkit-border-top-left-radius: $radius;
+    border-top-left-radius: $radius;
+    -moz-border-radius-topright: $radius;
+    -webkit-border-top-right-radius: $radius;
+    border-top-right-radius: $radius;
+}
+
+@mixin border-radius($radius: 4px) {
+    border-radius: $radius;
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+}
+
+@mixin arrow-icon($arrow-size:8px, $color:$base-color, $arrow-dir:top){
+    width: 0; 
+    height: 0;
+    @if $arrow-dir == "top" {
+      border-left: $arrow-size solid transparent;
+      border-right: $arrow-size solid transparent;
+      border-#{$arrow-dir}: $arrow-size solid $base-color;
+    }
+    @if $arrow-dir == "right" {
+      border-top: $arrow-size solid transparent;
+      border-bottom: $arrow-size solid transparent;
+      border-left: $arrow-size solid $base-color;
+    }
+    @if $arrow-dir == "bottom" {
+      border-left: $arrow-size solid transparent;
+      border-right: $arrow-size solid transparent;
+      border-#{$arrow-dir}: $arrow-size solid $base-color;
+    }
+    @if $arrow-dir == "left" {
+      border-top: $arrow-size solid transparent;
+      border-bottom: $arrow-size solid transparent;
+      border-right: $arrow-size solid $base-color;
+    }
+   
+}

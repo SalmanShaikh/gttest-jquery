@@ -1,0 +1,35 @@
+.product-block {
+	position:relative;
+}
+.product-block-header {
+	background-color: $bg-color;
+	@include top-radius(12px);
+	position: relative;
+	#{headings(1,6)} {
+		top:7px;
+	}
+
+}
+
+.product-block-content {
+	background-color: #fff;
+}
+
+.product-block-footer {
+	display:block;
+	background-color: #fff;
+	border-top: 1px solid $body-color;
+	a {
+		color:$base-color;
+		&:hover {
+			color:darken($base-color, 10%);
+			text-decoration: none;
+		}
+	}
+	.prev {
+		float:right;
+	}
+	.next {
+		float:left;
+	}
+}
